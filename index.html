@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>制作の進め方 — サービスデザイン演習</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  :root {
+    --ink: #1a1814;
+    --ink-mid: #4a4740;
+    --ink-light: #8a8780;
+    --paper: #f7f5f0;
+    --paper-warm: #ede9e0;
+    --accent: #c0392b;
+    --accent-soft: #f0e8e6;
+    --teal: #0f6e56;
+    --teal-soft: #e1f5ee;
+    --purple: #534ab7;
+    --purple-soft: #eeedfe;
+    --coral: #b94010;
+    --coral-soft: #faece7;
+    --amber: #7d5a00;
+    --amber-soft: #fff3cd;
+    --border: #d4d0c8;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.8; }
+
+  header {
+    background: var(--ink); color: var(--paper);
+    padding: 36px 40px 28px;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border: 2px solid rgba(255,255,255,0.08); border-radius: 50%;
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -60px; right: 40px;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(255,255,255,0.05); border-radius: 50%;
+  }
+  .header-eyebrow { font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 10px; }
+  header h1 { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
+  .header-sub { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
+  .section { margin-top: 40px; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-light); margin-bottom: 12px;
+  }
+  .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-light); }
+
+  /* ── ツールバッジ ── */
+  .tool-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 700; padding: 2px 9px;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .tool-claude  { background: #e8e5ff; color: #3730a3; }
+  .tool-figma   { background: #ffe4d6; color: #b94010; }
+  .tool-bolt    { background: #fef9c3; color: #854d0e; }
+  .tool-github  { background: #f1efe8; color: #1a1814; border: 0.5px solid var(--border); }
+
+  /* ── フェーズヘッダー ── */
+  .phase-block { margin-bottom: 20px; }
+  .phase-header-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 18px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+  }
+  .phase-header-bar.purple { background: var(--purple-soft); border-color: #afa9ec; }
+  .phase-header-bar.teal   { background: var(--teal-soft);   border-color: #5dcaa5; }
+  .phase-header-bar.coral  { background: var(--coral-soft);  border-color: #f0997b; }
+  .phase-header-bar.amber  { background: var(--amber-soft);  border-color: #efcb6b; }
+
+  .phase-num {
+    font-size: 11px; font-weight: 700; padding: 3px 10px;
+    border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+  }
+  .phase-num.purple { background: var(--purple); color: white; }
+  .phase-num.teal   { background: var(--teal);   color: white; }
+  .phase-num.coral  { background: var(--coral);  color: white; }
+  .phase-num.amber  { background: var(--amber);  color: white; }
+
+  .phase-header-title { font-size: 15px; font-weight: 700; flex: 1; }
+  .phase-header-bar.purple .phase-header-title { color: #3c3489; }
+  .phase-header-bar.teal   .phase-header-title { color: #085041; }
+  .phase-header-bar.coral  .phase-header-title { color: var(--coral); }
+  .phase-header-bar.amber  .phase-header-title { color: var(--amber); }
+
+  .phase-body {
+    border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 10px 10px;
+    background: white; padding: 16px 18px;
+  }
+
+  /* ── 回カード ── */
+  .session-row {
+    display: flex; gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .session-row:last-child { border-bottom: none; }
+  .session-num-badge {
+    flex-shrink: 0; width: 32px; height: 32px;
+    border-radius: 8px; background: var(--paper-warm);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: var(--ink-light);
+    line-height: 1.2; margin-top: 2px;
+  }
+  .session-num-badge span { font-size: 14px; color: var(--ink); font-weight: 700; line-height: 1; }
+  .session-content { flex: 1; }
+  .session-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .session-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 6px; }
+  .session-tools { display: flex; gap: 5px; flex-wrap: wrap; }
+
+  /* ── プランカード ── */
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  @media (max-width: 480px) { .plan-grid { grid-template-columns: 1fr; } }
+  .plan-card {
+    border-radius: 10px; padding: 14px 16px;
+    border: 1.5px solid var(--border);
+  }
+  .plan-card.a { border-color: #5dcaa5; background: var(--teal-soft); }
+  .plan-card.b { border-color: #efcb6b; background: var(--amber-soft); }
+  .plan-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .plan-card.a .plan-label { color: var(--teal); }
+  .plan-card.b .plan-label { color: var(--amber); }
+  .plan-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .plan-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 10px; }
+  .plan-tools { display: flex; gap: 5px; flex-wrap: wrap; }
+
+  /* ── 成果物ボックス ── */
+  .deliverable-box {
+    border: 2px solid var(--ink); border-radius: 10px;
+    padding: 16px 18px; margin-top: 16px;
+  }
+  .deliverable-box h4 { font-family: var(--serif); font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+  .deliverable-items { list-style: none; }
+  .deliverable-items li {
+    display: flex; gap: 10px; font-size: 13px;
+    padding: 6px 0; border-bottom: 1px dashed var(--border); align-items: flex-start;
+  }
+  .deliverable-items li:last-child { border-bottom: none; }
+  .check-box { width: 14px; height: 14px; border: 1.5px solid var(--ink-light); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── キーワード ── */
+  .keyword-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .keyword {
+    font-size: 12px; font-weight: 700; padding: 3px 10px;
+    border-radius: 20px; background: var(--paper-warm);
+    border: 1px solid var(--border); color: var(--ink-mid);
+  }
+
+  /* ── ノート ── */
+  .note-box {
+    background: var(--paper-warm); border-radius: 8px;
+    padding: 12px 14px; font-size: 13px; color: var(--ink-mid);
+    line-height: 1.7; margin-top: 12px;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+
+  footer {
+    margin-top: 48px; border-top: 1px solid var(--border);
+    padding-top: 20px; font-size: 12px; color: var(--ink-light);
+    text-align: center; line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container" style="padding-top:0;padding-bottom:0;">
+    <p class="header-eyebrow">Course Guide</p>
+    <h1>中間講評までの進め方</h1>
+    <p class="header-sub">泥くさいデザインプロセス ── つくり、検証し、またつくる</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ── 今後の演習の進め方 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>今後の進めかた</div>
+    <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
+      <p style="font-size:14px;color:var(--ink-mid);line-height:1.8;">これまでの講義/ワークをベースに、<strong>そろそろ本格的に自分のテーマ</strong>でデジタルサービスの設計・制作に取り組みはじめます。コンセプト設計(AIと壁打ちしてもOK)から始まり、プロトタイプ制作〜検証、FigmaでのUI調整、そして動くアプリの実装まで段階的に進めましょう。</p>
+      <div class="keyword-row">
+        <span class="keyword">意味形成のデザイン</span>
+        <span class="keyword">ユーザー体験設計</span>
+        <span class="keyword">Admin画面設計</span>
+        <span class="keyword">社会的影響の考察</span>
+        <span class="keyword">価値検証</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 今後使うツール ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>使うツール（すべて無料）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="tool-badge tool-claude">Claude.ai</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-mid);line-height:1.6;">アイデア壁打ち・コンセプト設計・HTMLプロトタイプ生成。全員が全工程で使う。</p>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="tool-badge tool-figma">Figma</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-mid);line-height:1.6;">ClaudeのHTMLをインポートしてUIを磨く。全員が第5回から使う。<br>プラグイン：html.to.design</p>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="tool-badge tool-bolt">Bolt.new</span>
+          <span style="font-size:11px;color:var(--amber);font-weight:700;">Bプランのみ</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-mid);line-height:1.6;">FigmaデザインをもとにWebアプリとして実装・公開する。希望者のみ第6回から導入。</p>
+      </div>
+      <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="tool-badge tool-github">GitHub Pages</span>
+          <span style="font-size:11px;color:var(--ink-light);font-weight:700;">Aプランのみ</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-mid);line-height:1.6;">完成したHTMLをURLとして公開する。Aプランの最終提出に使う。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── フェーズ1 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:var(--purple);"></span>第1段階　意味を掴む</div>
+
+    <div class="phase-block">
+      <div class="phase-header-bar purple">
+        <span class="phase-num purple">Step1</span>
+        <span class="phase-header-title">テーマ探し</span>
+      </div>
+      <div class="phase-body">
+        <div class="session-row" style="padding-top:0;">
+          <div class="session-content">
+            <div class="session-desc">どんなものを作るのか考えていきましょう。これまでのワークで出たアイデアを練るのもよし、AIと壁打ち(トークン消費に注意)しながら考えるのもよし。この演習はアイデアが勝負ではなく、検証結果を含めて説得力を持たせることが重要です。アイデアはたくさん並行して検証してみましょーう！</div>
+            <div class="session-tools">
+              <span class="tool-badge tool-claude">Claude.ai</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--purple-soft);border-radius:8px;padding:12px 14px;margin-top:4px;border-left:3px solid var(--purple);">
+          <div style="font-size:11px;font-weight:700;color:var(--purple);letter-spacing:.08em;margin-bottom:5px;">Step1のヒント</div>
+          <p style="font-size:14px;color:#3c3489;font-family:var(--serif);">検証(プロトタイプテスト)のやり方も考慮しながらアイデアを選ぶ</p>
+          <p style="font-size:12px;color:var(--ink-light);margin-top:4px;">→ 「読書習慣を身につけるためのサービス」なら「一定期間そのサービスを利用してみた後、習慣の変化をどのように記録するか」「サービス利用者と非利用者でどのように習慣化に差が出たか」「別々の機能でA/Bテストをした時にどちらが習慣化に寄与したか」なども含めてアイデアを練ってみましょう！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── フェーズ2 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:var(--teal);"></span>第2段階　サービスとして形にしていく</div>
+
+    <div class="phase-block">
+      <div class="phase-header-bar teal">
+        <span class="phase-num teal">Step2</span>
+        <span class="phase-header-title">(デジタルサービスの場合は)UIをデザインする　Claude.ai → Figma</span>
+      </div>
+      <div class="phase-body">
+        <div class="session-row" style="padding-top:0;">
+          <div class="session-content">
+            <div class="session-desc">ある程度アイデアが固まり、(場合によってはペーパープロトタイプなどでも検証したら)Claude.aiでスマホアプリ風のHTMLを生成します。生成したHTMLをFigmaにインポートし（html.to.designプラグイン使用）、余白・フォント・色を自分の手で調整してみると良いでしょう。</div>
+            <div class="session-tools">
+              <span class="tool-badge tool-claude">Claude.ai</span>
+              <span class="tool-badge tool-figma">Figma</span>
+            </div>
+          </div>
+        </div>
+        <div class="note-box">
+          <span>📌</span>
+          <span>Figmaへの移行はhtml.to.designプラグインを使うと良いです！この辺もうまくAIと壁打ちしながら試行錯誤してみてください。</span>
+        </div>
+        <div class="note-box">
+          <span>📌</span>
+          <span>このStep1〜2のアイディエーション、プロトタイプテストを繰り返しながら、「このサービスでいくぜ！」というものの当たりをつけていくのが当面の目標です。中間講評後にもそれなりに時間がありますし、AIも味方なので「このアイデアだけに絞るぜ！」と決め切らず、複数アイデアを並行して持っておくのが吉です。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header-bar amber">
+        <span class="phase-num amber">次の次の回？</span>
+        <span class="phase-header-title">中間講評</span>
+      </div>
+      <div class="phase-body">
+        <div class="session-row" style="padding-top:0;">
+          <div class="session-content">
+            <div class="session-desc">一旦どんな感じで進めているかを見せていただきます。発表ではなく、あくまでポートフォリオ的にまとめた資料"のみ"で提出してください。講評会でインタビューすることはあるかもしれません。</div>
+          </div>
+        </div>
+        <div class="deliverable-box">
+          <h4>提出資料に盛り込む項目(コレ以外の項目を含んでもOK)</h4>
+          <ul class="deliverable-items">
+            <li><span class="check-box"></span><span>サービス概要</span></li>
+            <li><span class="check-box"></span><span>制作プロセス</span></li>
+            <li><span class="check-box"></span><span>現時点での検証内容・検証結果</span></li>
+            <li><span class="check-box"></span><span>今後の方針</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+      <!-- ── AプランBプランの選択 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>中間講評後に決める：デザインのみか、デザインも実装もしてみるか</div>
+    <p style="font-size:14px;color:var(--ink-mid);margin-bottom:12px;">どちらのプランでも最終成果物の<strong>評価基準は同じ</strong>です。実装の有無ではなく、コンセプトの深さ・UIの質・社会的考察で評価します。が、検証は実装した方が精度が高いので、必然的に最終成果物のクオリティには寄与しそうです！</p>
+    <div class="plan-grid">
+      <div class="plan-card a">
+        <div class="plan-label">A Plan — デザインのみ</div>
+        <div class="plan-title">デザイン完成形を目指す</div>
+        <div class="plan-desc">Claude.aiでHTMLを作り、Figmaで仕上げる。デザインの精度を高めることに集中する。最終成果物はFigmaデータ＋GitHub Pages公開のHTML(予定)</div>
+        <div class="plan-tools">
+          <span class="tool-badge tool-claude">Claude.ai</span>
+          <span class="tool-badge tool-figma">Figma</span>
+          <span class="tool-badge tool-github">GitHub Pages</span>
+        </div>
+      </div>
+      <div class="plan-card b">
+        <div class="plan-label">B Plan — デザインと実装</div>
+        <div class="plan-title">動くアプリケーションとして実装する</div>
+        <div class="plan-desc">Figmaのデザインを元にBolt.newで実装。ユーザー画面とAdmin画面を接続した動くアプリを作る。最終成果物はFigmaデータ＋Bolt.newのURL。</div>
+        <div class="plan-tools">
+          <span class="tool-badge tool-claude">Claude.ai</span>
+          <span class="tool-badge tool-figma">Figma</span>
+          <span class="tool-badge tool-bolt">Bolt.new</span>
+        </div>
+      </div>
+    </div>
+    <div class="note-box">
+      <span>💡</span>
+      <span>途中でAプランからBプランに変更することもできます。ただし逆（B→A）は難しいので、迷ったらまずAプランで進めましょう。</span>
+    </div>
+  </div>
