@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>制作の進め方 — サービスデザイン演習</title>
+<title>提出物の一覧 — サービスデザイン演習</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
@@ -33,8 +33,7 @@
 
   header {
     background: var(--ink); color: var(--paper);
-    padding: 36px 40px 28px;
-    position: relative; overflow: hidden;
+    padding: 36px 40px 28px; position: relative; overflow: hidden;
   }
   header::before {
     content: ''; position: absolute; top: -40px; right: -40px;
@@ -59,6 +58,123 @@
   }
   .section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-light); }
 
+  /* ── 毎回共通提出物 ── */
+  .always-box {
+    background: var(--ink); color: white;
+    border-radius: 12px; padding: 18px 22px; margin-bottom: 24px;
+  }
+  .always-box .label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 10px;
+  }
+  .always-box .title { font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 12px; }
+  .always-items { list-style: none; }
+  .always-items li {
+    display: flex; gap: 10px; font-size: 14px;
+    padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    align-items: flex-start; color: rgba(255,255,255,0.85);
+  }
+  .always-items li:last-child { border-bottom: none; }
+  .always-num {
+    flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); color: white;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .always-note { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+  /* ── セッションカード ── */
+  .session-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+  }
+  .session-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 18px; border-bottom: 1px solid var(--border);
+  }
+  .session-header.purple { background: var(--purple-soft); }
+  .session-header.teal   { background: var(--teal-soft); }
+  .session-header.coral  { background: var(--coral-soft); }
+  .session-header.amber  { background: var(--amber-soft); }
+  .session-header.gray   { background: var(--paper-warm); }
+
+  .session-num {
+    flex-shrink: 0; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+  }
+  .session-num.purple { background: var(--purple); color: white; }
+  .session-num.teal   { background: var(--teal);   color: white; }
+  .session-num.coral  { background: var(--coral);  color: white; }
+  .session-num.amber  { background: var(--amber);  color: white; }
+  .session-num.gray   { background: var(--ink-light); color: white; }
+
+  .session-title { font-size: 14px; font-weight: 700; flex: 1; }
+  .session-header.purple .session-title { color: #3c3489; }
+  .session-header.teal   .session-title { color: #085041; }
+  .session-header.coral  .session-title { color: var(--coral); }
+  .session-header.amber  .session-title { color: var(--amber); }
+
+  .session-body { padding: 14px 18px; }
+
+  .submit-list { list-style: none; }
+  .submit-list li {
+    display: flex; gap: 10px; font-size: 13.5px;
+    padding: 7px 0; border-bottom: 1px dashed var(--border);
+    align-items: flex-start;
+  }
+  .submit-list li:last-child { border-bottom: none; }
+  .check-box {
+    width: 15px; height: 15px; border: 1.5px solid var(--ink-light);
+    border-radius: 3px; flex-shrink: 0; margin-top: 2px;
+  }
+
+  /* ── バッジ ── */
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 20px; margin-left: 6px;
+    vertical-align: middle; white-space: nowrap;
+  }
+  .badge-all    { background: #e8e5ff; color: #3730a3; }
+  .badge-a      { background: var(--teal-soft); color: var(--teal); }
+  .badge-b      { background: var(--amber-soft); color: var(--amber); border: 1px solid #efcb6b; }
+  .badge-new    { background: var(--accent-soft); color: var(--accent); }
+
+  /* ── 検証テンプレート ── */
+  .verify-template {
+    background: var(--paper-warm); border-radius: 8px;
+    padding: 14px 16px; margin-top: 12px;
+    border-left: 3px solid var(--purple);
+  }
+  .verify-template .label {
+    font-size: 11px; font-weight: 700; color: var(--purple);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .verify-row {
+    display: flex; gap: 8px; align-items: flex-start;
+    font-size: 13px; padding: 5px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .verify-row:last-child { border-bottom: none; }
+  .verify-q { color: var(--purple); font-weight: 700; flex-shrink: 0; width: 20px; }
+  .verify-a { color: var(--ink-mid); }
+
+  /* ── 中間講評ボックス ── */
+  .milestone-box {
+    border: 2px solid var(--ink); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 12px;
+  }
+  .milestone-box h3 {
+    font-family: var(--serif); font-size: 16px; font-weight: 600; margin-bottom: 12px;
+  }
+
+  /* ── 注釈 ── */
+  .note-box {
+    display: flex; gap: 8px; align-items: flex-start;
+    background: var(--paper-warm); border-radius: 8px;
+    padding: 10px 14px; font-size: 13px; color: var(--ink-mid);
+    line-height: 1.6; margin-top: 10px;
+  }
+
   /* ── ツールバッジ ── */
   .tool-badge {
     display: inline-flex; align-items: center; gap: 5px;
@@ -70,20 +186,17 @@
   .tool-bolt    { background: #fef9c3; color: #854d0e; }
   .tool-github  { background: #f1efe8; color: #1a1814; border: 0.5px solid var(--border); }
 
-  /* ── フェーズヘッダー ── */
+  /* ── フェーズブロック ── */
   .phase-block { margin-bottom: 20px; }
   .phase-header-bar {
     display: flex; align-items: center; gap: 12px;
-    padding: 12px 18px;
-    border-radius: 10px 10px 0 0;
-    border: 1px solid var(--border);
-    border-bottom: none;
+    padding: 12px 18px; border-radius: 10px 10px 0 0;
+    border: 1px solid var(--border); border-bottom: none;
   }
   .phase-header-bar.purple { background: var(--purple-soft); border-color: #afa9ec; }
   .phase-header-bar.teal   { background: var(--teal-soft);   border-color: #5dcaa5; }
   .phase-header-bar.coral  { background: var(--coral-soft);  border-color: #f0997b; }
   .phase-header-bar.amber  { background: var(--amber-soft);  border-color: #efcb6b; }
-
   .phase-num {
     font-size: 11px; font-weight: 700; padding: 3px 10px;
     border-radius: 20px; white-space: nowrap; flex-shrink: 0;
@@ -92,49 +205,31 @@
   .phase-num.teal   { background: var(--teal);   color: white; }
   .phase-num.coral  { background: var(--coral);  color: white; }
   .phase-num.amber  { background: var(--amber);  color: white; }
-
   .phase-header-title { font-size: 15px; font-weight: 700; flex: 1; }
   .phase-header-bar.purple .phase-header-title { color: #3c3489; }
   .phase-header-bar.teal   .phase-header-title { color: #085041; }
   .phase-header-bar.coral  .phase-header-title { color: var(--coral); }
   .phase-header-bar.amber  .phase-header-title { color: var(--amber); }
-
   .phase-body {
     border: 1px solid var(--border); border-top: none;
     border-radius: 0 0 10px 10px;
     background: white; padding: 16px 18px;
   }
 
-  /* ── 回カード ── */
+  /* ── 回カード内行 ── */
   .session-row {
-    display: flex; gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
+    display: flex; gap: 12px; padding: 10px 0;
+    border-bottom: 1px solid var(--border); align-items: flex-start;
   }
   .session-row:last-child { border-bottom: none; }
-  .session-num-badge {
-    flex-shrink: 0; width: 32px; height: 32px;
-    border-radius: 8px; background: var(--paper-warm);
-    border: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    font-size: 9px; font-weight: 700; color: var(--ink-light);
-    line-height: 1.2; margin-top: 2px;
-  }
-  .session-num-badge span { font-size: 14px; color: var(--ink); font-weight: 700; line-height: 1; }
   .session-content { flex: 1; }
-  .session-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .session-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 6px; }
   .session-tools { display: flex; gap: 5px; flex-wrap: wrap; }
 
   /* ── プランカード ── */
   .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
   @media (max-width: 480px) { .plan-grid { grid-template-columns: 1fr; } }
-  .plan-card {
-    border-radius: 10px; padding: 14px 16px;
-    border: 1.5px solid var(--border);
-  }
+  .plan-card { border-radius: 10px; padding: 14px 16px; border: 1.5px solid var(--border); }
   .plan-card.a { border-color: #5dcaa5; background: var(--teal-soft); }
   .plan-card.b { border-color: #efcb6b; background: var(--amber-soft); }
   .plan-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
@@ -144,20 +239,6 @@
   .plan-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 10px; }
   .plan-tools { display: flex; gap: 5px; flex-wrap: wrap; }
 
-  /* ── 成果物ボックス ── */
-  .deliverable-box {
-    border: 2px solid var(--ink); border-radius: 10px;
-    padding: 16px 18px; margin-top: 16px;
-  }
-  .deliverable-box h4 { font-family: var(--serif); font-size: 14px; font-weight: 600; margin-bottom: 10px; }
-  .deliverable-items { list-style: none; }
-  .deliverable-items li {
-    display: flex; gap: 10px; font-size: 13px;
-    padding: 6px 0; border-bottom: 1px dashed var(--border); align-items: flex-start;
-  }
-  .deliverable-items li:last-child { border-bottom: none; }
-  .check-box { width: 14px; height: 14px; border: 1.5px solid var(--ink-light); border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
-
   /* ── キーワード ── */
   .keyword-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
   .keyword {
@@ -166,13 +247,15 @@
     border: 1px solid var(--border); color: var(--ink-mid);
   }
 
-  /* ── ノート ── */
-  .note-box {
-    background: var(--paper-warm); border-radius: 8px;
-    padding: 12px 14px; font-size: 13px; color: var(--ink-mid);
-    line-height: 1.7; margin-top: 12px;
-    display: flex; gap: 8px; align-items: flex-start;
+  /* ── 成果物ボックス ── */
+  .deliverable-box { border: 2px solid var(--ink); border-radius: 10px; padding: 16px 18px; margin-top: 16px; }
+  .deliverable-box h4 { font-family: var(--serif); font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+  .deliverable-items { list-style: none; }
+  .deliverable-items li {
+    display: flex; gap: 10px; font-size: 13px;
+    padding: 6px 0; border-bottom: 1px dashed var(--border); align-items: flex-start;
   }
+  .deliverable-items li:last-child { border-bottom: none; }
 
   footer {
     margin-top: 48px; border-top: 1px solid var(--border);
@@ -185,15 +268,15 @@
 
 <header>
   <div class="container" style="padding-top:0;padding-bottom:0;">
-    <p class="header-eyebrow">Course Guide</p>
-    <h1>中間講評までの進め方</h1>
-    <p class="header-sub">泥くさいデザインプロセス ── つくり、検証し、またつくる</p>
+    <p class="header-eyebrow">Submission Guide</p>
+    <h1>毎回の提出物</h1>
+    <p class="header-sub">サービスデザイン演習 第5回〜第14回</p>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- ── 今後の演習の進め方 ── -->
+  <!-- ── 今後の演習の進め方（course_overviewより） ── -->
   <div class="section">
     <div class="section-label"><span class="dot"></span>今後の進めかた</div>
     <div style="background:white;border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
@@ -208,7 +291,7 @@
     </div>
   </div>
 
-  <!-- ── 今後使うツール ── -->
+  <!-- ── 使うツール ── -->
   <div class="section">
     <div class="section-label"><span class="dot"></span>使うツール（すべて無料）</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -229,7 +312,7 @@
           <span class="tool-badge tool-bolt">Bolt.new</span>
           <span style="font-size:11px;color:var(--amber);font-weight:700;">Bプランのみ</span>
         </div>
-        <p style="font-size:13px;color:var(--ink-mid);line-height:1.6;">FigmaデザインをもとにWebアプリとして実装・公開する。希望者のみ第6回から導入。</p>
+        <p style="font-size:13px;color:var(--ink-mid);line-height:1.6;">FigmaデザインをもとにWebアプリとして実装・公開する。希望者のみ中間講評後から導入。</p>
       </div>
       <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
@@ -244,7 +327,6 @@
   <!-- ── フェーズ1 ── -->
   <div class="section">
     <div class="section-label"><span class="dot" style="background:var(--purple);"></span>第1段階　意味を掴む</div>
-
     <div class="phase-block">
       <div class="phase-header-bar purple">
         <span class="phase-num purple">Step1</span>
@@ -271,7 +353,6 @@
   <!-- ── フェーズ2 ── -->
   <div class="section">
     <div class="section-label"><span class="dot" style="background:var(--teal);"></span>第2段階　サービスとして形にしていく</div>
-
     <div class="phase-block">
       <div class="phase-header-bar teal">
         <span class="phase-num teal">Step2</span>
@@ -321,34 +402,313 @@
       </div>
     </div>
 
-      <!-- ── AプランBプランの選択 ── -->
-  <div class="section">
-    <div class="section-label"><span class="dot"></span>中間講評後に決める：デザインのみか、デザインも実装もしてみるか</div>
-    <p style="font-size:14px;color:var(--ink-mid);margin-bottom:12px;">どちらのプランでも最終成果物の<strong>評価基準は同じ</strong>です。実装の有無ではなく、コンセプトの深さ・UIの質・社会的考察で評価します。が、検証は実装した方が精度が高いので、必然的に最終成果物のクオリティには寄与しそうです！</p>
-    <div class="plan-grid">
-      <div class="plan-card a">
-        <div class="plan-label">A Plan — デザインのみ</div>
-        <div class="plan-title">デザイン完成形を目指す</div>
-        <div class="plan-desc">Claude.aiでHTMLを作り、Figmaで仕上げる。デザインの精度を高めることに集中する。最終成果物はFigmaデータ＋GitHub Pages公開のHTML(予定)</div>
-        <div class="plan-tools">
-          <span class="tool-badge tool-claude">Claude.ai</span>
-          <span class="tool-badge tool-figma">Figma</span>
-          <span class="tool-badge tool-github">GitHub Pages</span>
+    <div class="section">
+      <div class="section-label"><span class="dot"></span>中間講評後に決める：デザインのみか、デザインも実装もしてみるか</div>
+      <p style="font-size:14px;color:var(--ink-mid);margin-bottom:12px;">どちらのプランでも最終成果物の<strong>評価基準は同じ</strong>です。実装の有無ではなく、コンセプトの深さ・UIの質・社会的考察で評価します。が、検証は実装した方が精度が高いので、必然的に最終成果物のクオリティには寄与しそうです！</p>
+      <div class="plan-grid">
+        <div class="plan-card a">
+          <div class="plan-label">A Plan — デザインのみ</div>
+          <div class="plan-title">デザイン完成形を目指す</div>
+          <div class="plan-desc">Claude.aiでHTMLを作り、Figmaで仕上げる。デザインの精度を高めることに集中する。最終成果物はFigmaデータ＋GitHub Pages公開のHTML(予定)</div>
+          <div class="plan-tools">
+            <span class="tool-badge tool-claude">Claude.ai</span>
+            <span class="tool-badge tool-figma">Figma</span>
+            <span class="tool-badge tool-github">GitHub Pages</span>
+          </div>
+        </div>
+        <div class="plan-card b">
+          <div class="plan-label">B Plan — デザインと実装</div>
+          <div class="plan-title">動くアプリケーションとして実装する</div>
+          <div class="plan-desc">Figmaのデザインを元にBolt.newで実装。ユーザー画面とAdmin画面を接続した動くアプリを作る。最終成果物はFigmaデータ＋Bolt.newのURL。</div>
+          <div class="plan-tools">
+            <span class="tool-badge tool-claude">Claude.ai</span>
+            <span class="tool-badge tool-figma">Figma</span>
+            <span class="tool-badge tool-bolt">Bolt.new</span>
+          </div>
         </div>
       </div>
-      <div class="plan-card b">
-        <div class="plan-label">B Plan — デザインと実装</div>
-        <div class="plan-title">動くアプリケーションとして実装する</div>
-        <div class="plan-desc">Figmaのデザインを元にBolt.newで実装。ユーザー画面とAdmin画面を接続した動くアプリを作る。最終成果物はFigmaデータ＋Bolt.newのURL。</div>
-        <div class="plan-tools">
-          <span class="tool-badge tool-claude">Claude.ai</span>
-          <span class="tool-badge tool-figma">Figma</span>
-          <span class="tool-badge tool-bolt">Bolt.new</span>
-        </div>
+      <div class="note-box">
+        <span>💡</span>
+        <span>途中でAプランからBプランに変更することもできます。ただし逆（B→A）は難しいので、迷ったらまずAプランで進めましょう。</span>
       </div>
-    </div>
-    <div class="note-box">
-      <span>💡</span>
-      <span>途中でAプランからBプランに変更することもできます。ただし逆（B→A）は難しいので、迷ったらまずAプランで進めましょう。</span>
     </div>
   </div>
+
+  <!-- 区切り線 -->
+  <div style="margin-top:48px;border-top:2px solid var(--ink);padding-top:40px;">
+
+  <!-- ── 毎回必ず提出するもの ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>毎回必ず提出/報告するもの（全回共通）</div>
+    <div class="always-box">
+      <div class="label">Every Session</div>
+      <div class="title">以下の3点を毎回Google Classroomに提出する</div>
+      <ul class="always-items">
+        <li>
+          <span class="always-num">1</span>
+          <div>
+            <div>今週分の作業報告</div>
+            <div class="always-note">Figma URL・HTMLファイル・スクリーンショット・リサーチ資料など。形式は問わない</div>
+          </div>
+        </li>
+        <li>
+          <span class="always-num">2</span>
+          <div>
+            <div>今回更新した「検証仮説」、および実際の検証結果</div>
+            <div class="always-note">誰に・何を・どうやって確かめるか。検証仮説は毎回書き直してOK。変化していくことが大事。</div>
+          </div>
+        </li>
+        <li>
+          <span class="always-num">3</span>
+          <div>
+            <div>次回までにやること（1〜3行）</div>
+            <div class="always-note">短くてOK。「次回もUIを続ける」より「○○を検証するため△△を作る」のように目的を書く</div>
+        </li>
+        <li>
+          <span class="always-num">※</span>
+          <div>
+            <div>フォーマットについて</div>
+            <div class="always-note">PDFの資料にまとめること。ページ数、形式は問いません！</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 検証仮説テンプレート -->
+    <div class="verify-template">
+      <div class="label">検証仮説の書き方テンプレート</div>
+      <div class="verify-row">
+        <span class="verify-q">誰</span>
+        <span class="verify-a">に見せる・使ってもらう（例：同じ美大生・料理が苦手な一人暮らし）</span>
+      </div>
+      <div class="verify-row">
+        <span class="verify-q">何</span>
+        <span class="verify-a">を確かめたいか（例：「作れなかった日」を記録することに抵抗がないか）</span>
+      </div>
+      <div class="verify-row">
+        <span class="verify-q">方法</span>
+        <span class="verify-a">どうやって確かめるか（例：プロトタイプを触ってもらいながら声を聞く・1週間使ってもらう）</span>
+      </div>
+      <div class="verify-row">
+        <span class="verify-q">OK</span>
+        <span class="verify-a">どうなったら「価値あり」と判断するか（例：3人中2人が「続けて使いたい」と言った）</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 各回の追加提出物 ── -->
+  <div class="section">
+    <div class="section-label"><span class="dot"></span>各回の制作進捗目安及び追加提出物(※厳密でなくてOKです)</div>
+
+    <!-- 第5回 -->
+    <div class="session-card">
+      <div class="session-header purple">
+        <span class="session-num purple">第5回</span>
+        <span class="session-title">テーマ探し・プロトタイプ制作①</span>
+      </div>
+      <div class="session-body">
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>コンセプト候補（1〜3案）──「誰のための・何を生み出すサービスか」を1文ずつ<span class="badge badge-new">初回</span></span></li>
+          <li><span class="check-box"></span><span>「このサービスが本当に生み出したい状態」1文<span class="badge badge-new">初回</span></span></li>
+          <li><span class="check-box"></span><span>プロトタイプ（HTMLまたはFigmaURL）── あるだけ出す。途中でOK</span></li>
+          <li><span class="check-box"></span><span>検証仮説（テンプレートで記入）</span></li>
+        </ul>
+        <div class="note-box" style="margin-top:10px;">
+          <span>💡</span>
+          <span>1案に絞らなくてOKです。複数案を並行して持ちながら、次回の中間講評に向けて一番手応えのあるものを前に出しましょう。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第6回 中間講評 -->
+    <div class="milestone-box">
+      <h3>📋　中間講評（第6回）</h3>
+      <p style="font-size:13px;color:var(--ink-mid);margin-bottom:12px;">発表ではなく<strong>資料の提出のみ</strong>です。形式は問いません。講評時にインタビューすることがあります。</p>
+      <ul class="submit-list">
+        <li><span class="check-box"></span><span>サービス概要（コンセプト・ターゲット・生み出したい状態）</span></li>
+        <li><span class="check-box"></span><span>制作プロセス（どう考えてきたか・何を試みたか）</span></li>
+        <li><span class="check-box"></span><span>現時点でのプロトタイプ（HTMLまたはFigmaURL）</span></li>
+        <li><span class="check-box"></span><span>現時点での検証内容・結果（まだ検証できていない場合はその旨を記載）</span></li>
+        <li><span class="check-box"></span><span>今後の方針（何を作るか・どう検証するか）</span></li>
+      </ul>
+      <div class="note-box" style="margin-top:12px;">
+        <span>📌</span>
+        <span>中間講評後にAプラン（デザインのみ）・Bプラン（デザイン＋実装）を選択します。</span>
+      </div>
+    </div>
+
+    <!-- 第7回以降：2トラック -->
+    <div style="margin:20px 0 12px;">
+      <div class="section-label"><span class="dot" style="background:var(--teal);"></span>第7回以降：2つのトラックで進む</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+        <div style="background:var(--teal-soft);border:1.5px solid #5dcaa5;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;margin-bottom:6px;">TRACK A ── テーマがある程度決まった人</div>
+          <p style="font-size:13px;color:#085041;line-height:1.6;">第7回からゴリゴリ制作を進める。毎回の提出物は「進捗ドキュメント」として講師に共有するイメージ。定例報告のように、現状・やったこと・次にやることを簡潔に。</p>
+        </div>
+        <div style="background:var(--amber-soft);border:1.5px solid #efcb6b;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.08em;margin-bottom:6px;">TRACK B ── まだテーマが定まっていない人</div>
+          <p style="font-size:13px;color:var(--amber);line-height:1.6;">第7〜8回は講師と壁打ちしながらテーマを絞る。<strong>第8回中にテーマを確定する</strong>ことをゴールにする。焦らなくていいが、第9回からは制作フェーズに入る。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第7回 -->
+    <div class="session-card">
+      <div class="session-header teal">
+        <span class="session-num teal">第7回</span>
+        <span class="session-title">制作継続 or テーマ壁打ち</span>
+      </div>
+      <div class="session-body">
+        <div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;margin-bottom:8px;">TRACK A</div>
+        <ul class="submit-list" style="margin-bottom:14px;">
+          <li><span class="check-box"></span><span>進捗ドキュメント（今週やったこと・現状のプロトタイプURL・次にやること）</span></li>
+          <li><span class="check-box"></span><span>更新した検証仮説</span></li>
+        </ul>
+        <div style="font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.08em;margin-bottom:8px;">TRACK B</div>
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>テーマ候補（絞り込み中のもの）と、それぞれへの疑問・迷っていること</span></li>
+          <li><span class="check-box"></span><span>壁打ちの記録（AIとのやりとりのスクリーンショット等）</span></li>
+        </ul>
+                <div class="note-box" style="margin-top:10px;">
+          <span>📌</span>
+          <span>Track Aの学生は、先の回で示している目安制作をどんどん進めてOKです！</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第8回 -->
+    <div class="session-card">
+      <div class="session-header teal">
+        <span class="session-num teal">第8回</span>
+        <span class="session-title">制作継続 or テーマ確定</span>
+      </div>
+      <div class="session-body">
+        <div style="font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;margin-bottom:8px;">TRACK A</div>
+        <ul class="submit-list" style="margin-bottom:14px;">
+          <li><span class="check-box"></span><span>進捗ドキュメント（今週やったこと・現状のプロトタイプURL・次にやること）</span></li>
+          <li><span class="check-box"></span><span>検証の記録（誰に・何を見せたか・どんな反応だったか）<span class="badge badge-new">初回</span></span></li>
+        </ul>
+        <div style="font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.08em;margin-bottom:8px;">TRACK B ── この回でテーマを確定する</div>
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>確定したコンセプト1文と「生み出したい状態」1文<span class="badge badge-new">確定版</span></span></li>
+          <li><span class="check-box"></span><span>最初のプロトタイプ（ラフでOK）</span></li>
+          <li><span class="check-box"></span><span>検証仮説（第1版）</span></li>
+        </ul>
+        <div class="note-box" style="margin-top:10px;">
+          <span>📌</span>
+          <span>Track Bの学生も第8回終了時点ではテーマを確定し、第9回からTrack Aと同じ制作フェーズに合流します。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第9回 -->
+    <div class="session-card">
+      <div class="session-header teal">
+        <span class="session-num teal">第9回</span>
+        <span class="session-title">UI設計（Claude.ai → Figma）</span>
+      </div>
+      <div class="session-body">
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>FigmaデータURL（ユーザー画面・初回インポート済み）<span class="badge badge-new">初回</span></span></li>
+          <li><span class="check-box"></span><span>ユーザーシナリオ（誰が・いつ・どんな文脈で使うか）</span></li>
+          <li><span class="check-box"></span><span>Bolt.new実装URL<span class="badge badge-b">Bプランのみ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 第10回 -->
+    <div class="session-card">
+      <div class="session-header teal">
+        <span class="session-num teal">第10回</span>
+        <span class="session-title">Admin画面設計</span>
+      </div>
+      <div class="session-body">
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>FigmaデータURL（Admin画面を追加したもの）<span class="badge badge-new">初回</span></span></li>
+          <li><span class="check-box"></span><span>「運営者が日々確認すること」リスト（箇条書き）</span></li>
+          <li><span class="check-box"></span><span>Bolt.new実装URL（Admin画面含む）<span class="badge badge-b">Bプランのみ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 第11回 -->
+    <div class="session-card">
+      <div class="session-header teal">
+        <span class="session-num teal">第11回</span>
+        <span class="session-title">ユーザー・Admin画面の整合</span>
+      </div>
+      <div class="session-body">
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>FigmaデータURL（ユーザー・Admin統合ファイル）</span></li>
+          <li><span class="check-box"></span><span>検証の記録（これまでの累積。更新していく）</span></li>
+          <li><span class="check-box"></span><span>Bolt.new実装URL（整合済み）<span class="badge badge-b">Bプランのみ</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 第12回以降：ポートフォリオフェーズ -->
+    <div style="margin:20px 0 12px;padding:14px 18px;background:var(--ink);border-radius:10px;">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;">第12回ごろ〜　ポートフォリオフェーズへ</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.7;">第12回ごろから、これまでの検証・制作・考察を<strong style="color:white;">ポートフォリオとしてまとめるフェーズ</strong>に入ります。毎回の提出物もポートフォリオの形式（ページ数不問）で積み上げていく形に切り替わります。プロセスも含めてアウトプットとして整理していきましょう。</p>
+    </div>
+
+    <!-- 第12回 -->
+    <div class="session-card">
+      <div class="session-header coral">
+        <span class="session-num coral">第12回</span>
+        <span class="session-title">ステークホルダーと社会的影響の考察</span>
+      </div>
+      <div class="session-body">
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>ステークホルダーマップ（形式不問）<span class="badge badge-new">初回</span></span></li>
+          <li><span class="check-box"></span><span>考察メモ（自分のサービスが社会に与える影響で気づいたこと）</span></li>
+          <li><span class="check-box"></span><span>更新した検証仮説</span></li>
+          <li><span class="check-box"></span><span>ポートフォリオ（第1版）── これまでの制作・検証プロセスをまとめ始める<span class="badge badge-new">初回</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 第13回 -->
+    <div class="session-card">
+      <div class="session-header coral">
+        <span class="session-num coral">第13回</span>
+        <span class="session-title">社会的文脈の反映・最終仕上げ</span>
+      </div>
+      <div class="session-body">
+        <ul class="submit-list">
+          <li><span class="check-box"></span><span>FigmaプロトタイプURL（最終版）<span class="badge badge-all">全員</span></span></li>
+          <li><span class="check-box"></span><span>Bolt.new実装URL（最終調整済み）<span class="badge badge-b">Bプランのみ</span></span></li>
+          <li><span class="check-box"></span><span>ポートフォリオ（更新版）── 社会的考察・ステークホルダーマップを追加する</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 第14回 講評会 -->
+    <div class="milestone-box">
+      <h3>🏁　最終講評会（第14回）</h3>
+      <p style="font-size:13px;color:var(--ink-mid);margin-bottom:12px;">ページ数は問いません。制作・検証・考察のプロセスをすべて含めて提出してください。</p>
+      <ul class="submit-list">
+        <li><span class="check-box"></span><span>ポートフォリオ（完成版）── コンセプト・制作プロセス・検証記録・社会的考察をまとめたもの<span class="badge badge-all">全員</span></span></li>
+        <li><span class="check-box"></span><span>FigmaプロトタイプURL（ユーザー画面＋Admin画面）<span class="badge badge-all">全員</span></span></li>
+        <li><span class="check-box"></span><span>Bolt.new実装URL<span class="badge badge-b">Bプランのみ</span></span></li>
+      </ul>
+      <div class="note-box" style="margin-top:12px;">
+        <span>⚖️</span>
+        <span>AプランBプランの<strong>評価基準は同じ</strong>です。実装の有無ではなく、コンセプトの深さ・UIの質・検証の誠実さ・社会的考察で評価します。</span>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /区切り線 -->
+
+</div>
+
+<footer>
+  <div class="container" style="padding-top:0;padding-bottom:0;">
+    提出物の形式・詳細は各授業回で共有します。不明な点はいつでも声をかけてください。
+  </div>
+</footer>
+
+</body>
+</html>
