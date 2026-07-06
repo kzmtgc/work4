@@ -257,6 +257,25 @@
   }
   .deliverable-items li:last-child { border-bottom: none; }
 
+  /* ── tokoha Step4移植用スタイル ── */
+  .phase { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; background: white; }
+  .phase-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .phase-badge { font-size: 10px; font-weight: 700; letter-spacing: .1em; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+  .phase-badge.verify { background: var(--purple-soft); color: var(--purple); }
+  .phase-title { font-size: 15px; font-weight: 700; flex: 1; }
+  .phase-body-inner { padding: 18px 20px; }
+  .goal-box { background: var(--paper-warm); border-radius: 8px; padding: 12px 16px; font-size: 14px; margin-bottom: 16px; display: flex; gap: 10px; align-items: flex-start; }
+  .steps-list { list-style: none; }
+  .steps-list li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .steps-list li:last-child { border-bottom: none; }
+  .step-num-c { width: 22px; height: 22px; border-radius: 50%; background: var(--purple); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-cnt { flex: 1; }
+  .step-cnt strong { font-weight: 700; }
+  .step-cnt p { font-size: 14px; color: var(--ink-mid); margin-top: 3px; }
+  .prompt-card-p { background: var(--paper); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 13.5px; line-height: 1.7; margin-top: 10px; font-family: var(--serif); }
+  .tips-box { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .tip-row { display: flex; gap: 10px; font-size: 13px; color: var(--ink-mid); align-items: flex-start; }
+
   footer {
     margin-top: 48px; border-top: 1px solid var(--border);
     padding-top: 20px; font-size: 12px; color: var(--ink-light);
@@ -792,6 +811,80 @@
     a.click();
   }
 </script>
+
+<div class="container">
+  <div class="section">
+    <div class="section-label"><span class="dot" style="background:var(--purple);"></span>UIの仕上げ</div>
+
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge verify">Step 4</span>
+        <span class="phase-title">プロトタイプをHIG/MD準拠に整える</span>
+      </div>
+      <div class="phase-body-inner">
+        <div class="goal-box">
+          <span>🎯</span>
+          <span>ユーザーテストを経て「作るものが固まった」段階で、見た目の説得力を上げるフェーズです。ここで初めてUIの体裁を整えます。</span>
+        </div>
+
+        <div class="note-box" style="margin-bottom:16px;">
+          <span style="flex-shrink:0;">⚠️</span>
+          <span>このHTMLファイルは、あくまでアイデアを検証するためのプロトタイプです。どれだけ見た目を整えても、実際にダウンロードして使える「App」にはなりません。App Store/Google Playでの配布には、Swift/Kotlinなどでのネイティブ開発や審査プロセスが別途必要です。ここでの作業は「アイデアが正しく伝わる状態にする」ためのものであり、実装そのものを目指すものではない、ということを念頭に置いてください。</span>
+        </div>
+
+        <ul class="steps-list">
+          <li>
+            <div class="step-num-c">1</div>
+            <div class="step-cnt">
+              <strong>どちらの世界観に寄せるか決める</strong>
+              <p>iOS風（Human Interface Guidelines）にするか、Android風（Material Design）にするか、あるいはどちらでもない独自路線か、まず決めます。両方の要素が混ざっていると「素人っぽさ」が出てしまうので注意。</p>
+              <div class="prompt-card-p">「このサービスはiOS(HIG)とAndroid(Material Design)、どちらの世界観の方が合っていると思いますか？理由も教えてください。」</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num-c">2</div>
+            <div class="step-cnt">
+              <strong>トークン（色・文字・余白）を先に揃える</strong>
+              <p>ボタンの形やアイコンを一つずつ直す前に、まず「色」「フォント」「余白のルール」を統一すると一気にそれっぽくなります。</p>
+              <div class="prompt-card-p">「このHTMLのカラーパレット・フォント・余白を、iOS(またはMaterial Design)のガイドラインに沿って統一してください。特に、余白は8pxグリッドに揃えてください。」</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num-c">3</div>
+            <div class="step-cnt">
+              <strong>ナビゲーション構造を見直す</strong>
+              <p>タブバーの位置、戻るボタンの挙動、ヘッダーの高さなど、OSごとに「お作法」が違う部分です。ここがズレていると一目で違和感が出ます。</p>
+              <div class="prompt-card-p">「このHTMLのナビゲーション(タブバー・ヘッダー・戻るボタン)を、iOS(またはAndroid)アプリの標準的な配置・挙動に修正してください。」</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num-c">4</div>
+            <div class="step-cnt">
+              <strong>ボタン・カード・リストを標準コンポーネントに寄せる</strong>
+              <p>自己流のボタンやカードを、OS標準の見た目（角丸の半径、影の付き方、押した時の反応など）に近づけます。</p>
+              <div class="prompt-card-p">「このボタンとカードのデザインを、Material Design 3(またはApple HIG)の標準的なコンポーネントに近づけてください。角丸・影・タップ時の見た目も含めて。」</div>
+            </div>
+          </li>
+          <li>
+            <div class="step-num-c">5</div>
+            <div class="step-cnt">
+              <strong>アイコンを統一する</strong>
+              <p>絵文字や自己流アイコンが混在していると一気に安っぽく見えます。SF Symbols（iOS）かMaterial Symbols（Android）の雰囲気に揃えましょう。</p>
+              <div class="prompt-card-p">「このHTML内のアイコンを、Material Symbols(またはSF Symbols)のスタイルに統一してください。線の太さやサイズ感も揃えてください。」</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tips-box">
+          <div style="font-size:11px;font-weight:700;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">Tips</div>
+          <div class="tip-row"><span>💡</span><span>迷ったら「Apple Human Interface Guidelines」「Material Design 3」を検索キーワードにAIに聞くと、公式の考え方に沿った提案が返ってきます。</span></div>
+          <div class="tip-row"><span>💡</span><span>全部を完璧に揃える必要はありません。講評会で「ちゃんと考えて作られている」と伝わる最低限の一貫性があれば十分です。</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <footer>
   <div class="container" style="padding-top:0;padding-bottom:0;">
